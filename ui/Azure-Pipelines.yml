@@ -1,5 +1,21 @@
 trigger:
-- main
+- main  
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
+
+variables:
+  imageName: samahmoe/trainer-portal-ui
+  tag: $(Build.BuildId)
+
+steps:
+- task: Docker@2
+  displayName: Build and Push Docker Image
+  inputs:
+    containerRegistry: 'DockerHubConnection'
+    repository: $(imageName)
+    command: 'buildAndPush'
+    Dockerfile: 'Dockerfile'
+    tags: |
+      $(tag)
+      latest
