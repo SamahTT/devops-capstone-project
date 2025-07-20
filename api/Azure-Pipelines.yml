@@ -15,7 +15,7 @@ steps:
     containerRegistry: 'DockerHubConnection'
     repository: $(imageName)
     command: 'buildAndPush'
-    Dockerfile: 'Dockerfile'
+    Dockerfile: './api/Dockerfile'
     tags: |
       $(tag)
       latest
